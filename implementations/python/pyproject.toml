@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "d3networking"
+version = "0.0.1"
+requires-python = ">=3.10"
+readme = "README.md"
+maintainers = [
+    {name = "Etienne Parent", email = "etienne.parent.6@ulaval.ca"}
+]
+dependencies = [
+    "PyNaCl==1.5.0",
+]
+
+[project.optional-dependencies]
+cli = [
+    "click==8.1.7",
+]
+
+[project.scripts]
+d3networking = "d3networking.cli.cli:app"
