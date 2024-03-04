@@ -12,7 +12,7 @@ from d3networking.transport.transport import AvailablePayloadServer, AvailablePa
 
 SIGNING_KEY = b'd3d0ad95d720c6cf564210a3531d329577c72f763675adbd7dfd3ce2b23208c8'
 
-server = AvailablePayloadServer(None, proto=4)
+server = AvailablePayloadServer(SigningKey(SIGNING_KEY, encoder=HexEncoder), proto=6)
 
 seq_num: int = 0
 while True:
