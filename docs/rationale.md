@@ -100,7 +100,7 @@ Pour le protocole applicatif, nous avons assumé la taille des données suivante
 - Numéro de séquence : 4 octets d'entier non signé. Ici, 4 octets est une quantité de données immense pour les requis
   du projet. En effet, pour le numéro de séquence, il faut simplement que sa taille maximale soit au moins aussi grande
   que le nombre maximal d'autres paquets pouvant être transmis avant que le paquet n'arrive à destination. Puisque nous
-  transmettons à chaque seconde, les paquets auront $2^32 = 4294967296$ secondes pour arriver à destination. Aucun TTL
+  transmettons à chaque seconde, les paquets auront $2^{32} = 4294967296$ secondes pour arriver à destination. Aucun TTL
   sur notre réseau ne pourrait permettre un tel délais.
 
 Un autre problème considéré lors de la création du protocole applicatif est celui de l'authenticité des données. Qu'est
