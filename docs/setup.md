@@ -32,3 +32,25 @@ Par défaut, le serveur fourni utilise IPv6 et signe tous les paquets. La clé d
 clair dans le fichier d'implémentation. Cette clé a été utilisée pour générer la clé de validation sauvegardée dans le
 fichier [`demo.keys`](../implementations/python/examples/demo.keys). Le client est ainsi capable de valider la signature
 des messages transmis par le serveur par défaut.
+
+## Utilisation de l'interface sur la ligne de commande
+
+```
+$ d3networking 
+Usage: d3networking [OPTIONS] COMMAND [ARGS]...
+
+  Utility script to generate and store signing keys.
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  generate-keypair  Generate a public and a private key for message signing.
+  store-sign-keys   Prompts the user for a certain amount of keys and...
+```
+
+L'interface sur la ligne de commande permet de générer des paires de clés ainsi que de stocker des clés publiques
+dans un format compris par l'implémentation du client.
+
+Vous pouvez donc tout de suite commencer à générer vos paires de clés et à partager votre clé publique aux autres
+équipes.
