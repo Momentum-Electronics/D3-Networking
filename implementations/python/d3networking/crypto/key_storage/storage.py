@@ -8,7 +8,7 @@ from nacl.exceptions import TypeError
 
 def _add_public_key_to_file(public_key: VerifyKey, store_path: Path):
     if not store_path.exists():
-        raise IOError("Privided store path does not exist.")
+        raise IOError("Provided store path does not exist.")
     with open(store_path, "wb") as stream:
         stream.write(public_key.encode())
 
