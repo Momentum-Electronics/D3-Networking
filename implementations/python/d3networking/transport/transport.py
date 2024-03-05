@@ -55,11 +55,12 @@ class AvailablePayloadServer:
 class AvailablePayloadClient:
     """ Client implementation of D3 networking.
     """
-    def __init__(self, validate_keys: Dict[int, VerifyKey], proto: Literal[4, 6] = 6):
+    def __init__(self, validate_keys: Dict[int, VerifyKey], scope_id: int = 0, proto: Literal[4, 6] = 6):
         """ Instantiate an AvailablePayloadClient
 
         :param validate_keys: Mapping between team identifiers and their public keys. This is used to validate
         message signatures.
+        :param scope_id: Scope id of the network interface to use.
         :param proto: The network protocol to use (IPv4 or IPv6).
         """
         self._port = PORT
@@ -74,14 +75,14 @@ class AvailablePayloadClient:
         self._socket.bind(("", self._port))
         self.validate_keys = validate_keys
 
-        self._join_multicast_grp(proto)
+        self._join_multicast_grp(proto, scope_id)
         self.prev_seq_num = -1
 
-    def _join_multicast_grp(self, proto: Literal[4, 6]):
+    def _join_multicast_grp(self, proto: Literal[4, 6], scope_id: int):
         grp = socket.inet_pton(self._addr_info[0], self._addr_info[4][0])
 
         if proto == 6:
-            mreq = grp + struct.pack('@I', 0)
+            mreq = grp + struct.pack('@I', scope_id)
             self._socket.setsockopt(socket.IPPROTO_IPV6, socket.IPV6_JOIN_GROUP, mreq)
         else:
             mreq = grp + struct.pack('=I', socket.INADDR_ANY)
