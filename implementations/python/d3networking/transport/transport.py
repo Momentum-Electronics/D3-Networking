@@ -8,7 +8,7 @@ from ..processing.processing import validate_msg, validate_seq_num
 from nacl.signing import VerifyKey, SigningKey, SignedMessage
 
 V6_MULTICAST_GRP = "ff12::e01"
-V4_MULTICAST_GRP = "224.0.0.25"
+V4_MULTICAST_GRP = "224.0.0.70"
 PORT = 36868
 INT_MAX_VAL = 2_147_483_647
 

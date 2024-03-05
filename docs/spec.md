@@ -6,7 +6,7 @@ Pour le protocole réseau, les adresses *multicast* suivantes sont utilisées
 
 | Protocole | Adresse         |
 |-----------|-----------------|
-| IPv4      | `224.0.0.25/24` |
+| IPv4      | `224.0.0.70/24` |
 | IPv6      | `ff12::e01/16`  |
 
 ## Protocole de transport
