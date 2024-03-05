@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from ..exceptions.exceptions import InvalidMessageException
 
 
@@ -56,7 +56,7 @@ class AvailablePayloadMessage:
     sig_size: int = 0
     """ Size of the signature. There is no signature if the size is 0.
     """
-    signature: bytearray = bytearray()
+    signature: bytearray = field(default_factory=bytearray)
     """ Bytearray representation of the signature.
     """
 
