@@ -14,7 +14,14 @@ INT_MAX_VAL = 2_147_483_647
 
 
 class AvailablePayloadServer:
+    """ Server implementation for D3 networking.
+    """
     def __init__(self, signing_key: Union[SigningKey, None], proto: Literal[4, 6] = 6):
+        """ Instantiate an AvailablePayloadServer
+
+        :param signing_key: The key used to sign messages. Messages won't be signed if this is set to None.
+        :param proto: The network protocol to use (IPv4 or IPv6).
+        """
         self._port = PORT
         if proto == 6:
             self._addr = V6_MULTICAST_GRP
@@ -27,6 +34,12 @@ class AvailablePayloadServer:
         self.seq_num = 0
 
     def send_message(self, msg: AvailablePayloadMessage):
+        """ Send a message to the UDP socket.
+
+        :param msg: An unsigned message ready to be sent. This method takes care of signing the message and setting the
+        key length attribute before sending.
+        :return: None.
+        """
         msg.seq_num = self.seq_num
         if self.signing_key is not None:
             signed_msg: SignedMessage = self.signing_key.sign(msg.as_unsigned_bytes())
@@ -40,7 +53,15 @@ class AvailablePayloadServer:
 
 
 class AvailablePayloadClient:
+    """ Client implementation of D3 networking.
+    """
     def __init__(self, validate_keys: Dict[int, VerifyKey], proto: Literal[4, 6] = 6):
+        """ Instantiate an AvailablePayloadClient
+
+        :param validate_keys: Mapping between team identifiers and their public keys. This is used to validate
+        message signatures.
+        :param proto: The network protocol to use (IPv4 or IPv6).
+        """
         self._port = PORT
         if proto == 6:
             self._addr = V6_MULTICAST_GRP
@@ -74,6 +95,13 @@ class AvailablePayloadClient:
         return True
 
     def recv_message(self, validate: bool = True) -> Union[AvailablePayloadMessage, None]:
+        """ Receive a message on the UDP socket.
+
+        This is a blocking call.
+
+        :param validate: Whether to drop the message if it has no valid signature or not.
+        :return: The message if it is valid, None otherwise.
+        """
         data, _ = self._socket.recvfrom(1500)
         data.rstrip()
 
