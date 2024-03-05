@@ -1,14 +1,14 @@
-import click
-from typing import Dict
 from pathlib import Path
-from nacl.signing import VerifyKey
-from nacl.encoding import HexEncoder
+from typing import Dict
+
+import click
 from d3networking.crypto.key_generator.key_generator import KeyGenerator
 from d3networking.crypto.key_storage.key_pair import print_keypair, KeyPair
 from d3networking.crypto.key_storage.storage import store_keymap
+from nacl.signing import VerifyKey
 
 
-def _bad_key_err():
+def _bad_key_err() -> None:
     print("Bad key format.")
     print("Operation cancelled")
     exit(1)

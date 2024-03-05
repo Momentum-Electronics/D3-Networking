@@ -1,4 +1,4 @@
-"""
+""" Server implementation of D3 Networking.
 
 Sends dummy data to a multicast group. The dummy data is signed using a pre-generated
 private key.

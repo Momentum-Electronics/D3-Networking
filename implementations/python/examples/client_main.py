@@ -1,4 +1,4 @@
-"""
+""" Client implementation for D3 networking
 
 Receives messages, validates their signatures and prints message information
 on the standard output.
@@ -9,8 +9,11 @@ from pathlib import Path
 from d3networking.crypto.key_storage.storage import load_keymap
 from d3networking.transport.transport import AvailablePayloadClient, AvailablePayloadMessage
 
+
+# Load keys from a binary file.
 validate_keys = load_keymap(store_path=Path("./demo.keys"), keys_amount=1)
 
+# Start client on IPv6
 client = AvailablePayloadClient(validate_keys, proto=6)
 
 while True:
