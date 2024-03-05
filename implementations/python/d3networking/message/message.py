@@ -121,9 +121,9 @@ class AvailablePayloadMessage:
         sig_size = _read_bytes(msg_as_bytes, 6)
         signature = bytearray()
         if sig_size > 0:
-            if len(msg_as_bytes) < 10 + 3 + sig_size + 1:
+            if len(msg_as_bytes) < 10 + sig_size:
                 raise InvalidMessageException("Signature does not fit in message length.")
-            signature = msg_as_bytes[10: 10 + 3 + sig_size]
+            signature = msg_as_bytes[10: 10 + sig_size]
 
         msg_from_bytes = AvailablePayloadMessage(
             team_id=team_id,
