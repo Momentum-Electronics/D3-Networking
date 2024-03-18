@@ -95,6 +95,12 @@ class AvailablePayloadClient:
 
         return True
 
+    def close_connection(self):
+        """ Close the connection to the multicast group.
+        """
+        self._socket.shutdown()
+        self._socket.close()
+
     def recv_message(self, validate: bool = True) -> Union[AvailablePayloadMessage, None]:
         """ Receive a message on the UDP socket.
 
